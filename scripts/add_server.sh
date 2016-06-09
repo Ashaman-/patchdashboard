@@ -43,7 +43,7 @@ while [[ "$dist_ver_selected" = "" ]]; do
 	read -p "Please select which version of $distro_name you're using on this node: " dist_ver_selected
 done
 
-mysql -h $DB_HOST -u $DB_USER -p"$DB_PASS" -D $DB_NAME -e "INSERT INTO servers(server_name,distro_id,server_ip,distro_version) VALUES('$sHost',$dist_num_selected,'$ipAddr',$dist_ver_selected);"
+mysql -h $DB_HOST -u $DB_USER -p"$DB_PASS" -D $DB_NAME -e "INSERT INTO servers(server_name,server_alias,distro_id,server_ip,distro_version) VALUES('$sHost','$sHost',$dist_num_selected,'$ipAddr',$dist_ver_selected);"
 echo -e "\n\e[32mNOTICE\e[0m: Server successfully added!
 	Next:
 		If you have access via SSH to the root user on the remote system, run this:
