@@ -31,6 +31,8 @@ while [[ "$dist_num_selected" = "" ]]; do
 	read -p "Please enter the number corresponding to your distro: " dist_num_selected
 done
 
+dist_name_selected=`mysql -h $DB_HOST -u $DB_USER -p"$DB_PASS" -Nse "SELECT distro_name from distro where id='$dist_num_selected';" $DB_NAME`
+
 distro_ver=`mysql -h $DB_HOST -u $DB_USER -p"$DB_PASS" -Nse "SELECT id from distro_version where distro_id='$dist_num_selected' order by id ASC;" $DB_NAME`
 for osv in $distro_ver; do
 	ver_name=`mysql -h $DB_HOST -u $DB_USER -p"$DB_PASS" -Nse "SELECT version_num from distro_version where id='$osv';" $DB_NAME`
@@ -38,7 +40,7 @@ for osv in $distro_ver; do
 done
 echo
 unset dist_ver_selected
-read -p "Please select which version of $os you're using on this node: " dist_ver_selected
+read -p "Please select which version of $dist_name_selected you're using on this node: " dist_ver_selected
 while [[ "$dist_ver_selected" = "" ]]; do
 	read -p "Please select which version of $distro_name you're using on this node: " dist_ver_selected
 done
