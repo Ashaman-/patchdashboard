@@ -18,6 +18,7 @@ if (!isset($index_check) || $index_check != "active"){
  }
  $res1 = mysql_query($sql1);
  $base_path = BASE_PATH;
+ $table = "";
  while ($row1 = mysql_fetch_assoc($res1)){
      $count++;
      $package_name = $row1['package_name'];
